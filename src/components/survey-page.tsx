@@ -64,8 +64,8 @@ export function SurveyPage({ token }: { token: string }) {
           <h2 className="font-display text-3xl font-bold tracking-tight">Link non valido</h2>
           <p className="text-muted-foreground leading-relaxed">
             Questo link non risulta più attivo. Se pensi sia un errore, scrivi a{" "}
-            <a href="mailto:report@energizzo.it" className="text-primary hover:underline font-medium">
-              report@energizzo.it
+            <a href="mailto:emanuele@unvrslabs.dev" className="text-primary hover:underline font-medium">
+              emanuele@unvrslabs.dev
             </a>
             .
           </p>

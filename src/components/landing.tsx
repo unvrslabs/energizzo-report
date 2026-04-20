@@ -32,7 +32,7 @@ export function Landing() {
             />
             <Feature
               icon={Sparkles}
-              title="12–15 minuti"
+              title="3–5 minuti"
               body="Rispondi a 24 domande. Il benchmark arriva entro 60 giorni."
             />
           </div>
@@ -43,8 +43,8 @@ export function Landing() {
             </p>
             <p className="mt-3 text-sm text-muted-foreground">
               Per richiedere un invito scrivi a{" "}
-              <a href="mailto:report@energizzo.it" className="text-primary hover:underline font-medium">
-                report@energizzo.it
+              <a href="mailto:emanuele@unvrslabs.dev" className="text-primary hover:underline font-medium">
+                emanuele@unvrslabs.dev
               </a>
               .
             </p>

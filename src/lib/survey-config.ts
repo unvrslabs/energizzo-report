@@ -103,7 +103,7 @@ export const SURVEY_SCREENS: Screen[] = [
     type: "welcome",
     title: "Stato del Reseller Energia in Italia 2026",
     description:
-      "Questa survey alimenta il primo report indipendente sui benchmark operativi del reseller energia italiano.\n\nCompilarla richiede 12 – 15 minuti. In cambio riceverai, entro 60 giorni, un benchmark privato della tua azienda confrontata in anonimato con i peer della tua fascia dimensionale.\n\nTutte le risposte sono aggregate. Nessun dato individuale sarà mai pubblicato o associato al nome della tua azienda.",
+      "Questa survey alimenta il primo report indipendente sui benchmark operativi del reseller energia italiano.\n\nCompilarla richiede 3 – 5 minuti. In cambio riceverai, entro 60 giorni, un benchmark privato della tua azienda confrontata in anonimato con i peer della tua fascia dimensionale.\n\nTutte le risposte sono aggregate. Nessun dato individuale sarà mai pubblicato o associato al nome della tua azienda.",
     buttonText: "Iniziamo",
   },
   {
@@ -527,7 +527,7 @@ export const SURVEY_SCREENS: Screen[] = [
     type: "thanks",
     title: "Grazie.",
     description:
-      "La tua partecipazione rende questo report più solido e utile a tutto il settore.\n\nIl benchmark privato della tua azienda arriverà entro 60 giorni dalla chiusura della raccolta risposte.\n\nSe conosci un collega CEO/COO di un altro reseller a cui potrebbe interessare, segnalacelo: scrivici a report@energizzo.it.",
+      "La tua partecipazione rende questo report più solido e utile a tutto il settore.\n\nIl benchmark privato della tua azienda arriverà entro 60 giorni dalla chiusura della raccolta risposte.\n\nSe conosci un collega CEO/COO di un altro reseller a cui potrebbe interessare, segnalacelo: scrivici a emanuele@unvrslabs.dev.",
     buttonText: "Scopri Energizzo",
     buttonHref: "https://energizzo.it",
   },
