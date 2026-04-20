@@ -22,13 +22,15 @@ export function LongTextScreen({
   }, [screen.id]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       {screen.section && <SectionLabel index={screen.section.index} label={screen.section.label} />}
-      <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight">
+      <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight tracking-tight">
         {screen.title}
-        {screen.required && <span className="text-primary">*</span>}
+        {screen.required && <span className="text-primary ml-1">*</span>}
       </h2>
-      {screen.description && <p className="text-muted">{screen.description}</p>}
+      {screen.description && (
+        <p className="text-muted-foreground text-base">{screen.description}</p>
+      )}
       <textarea
         ref={ref}
         rows={3}
@@ -42,16 +44,14 @@ export function LongTextScreen({
             onNext();
           }
         }}
-        className="w-full bg-transparent border-0 border-b-2 border-border focus:border-primary text-xl sm:text-2xl py-3 placeholder:text-muted/40 resize-none transition-colors"
+        className="w-full bg-transparent border-0 border-b-2 border-border focus:border-primary text-xl sm:text-2xl py-3 placeholder:text-muted-foreground/40 resize-none transition-colors"
       />
-      <div className="flex items-center justify-between text-xs text-muted">
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
         {screen.maxLength && (
-          <span>
-            {value.length} / {screen.maxLength}
-          </span>
+          <span>{value.length} / {screen.maxLength}</span>
         )}
         <span>
-          <kbd className="rounded border border-border bg-card/60 px-1.5 py-0.5 font-mono text-[10px]">⌘ + Invio</kbd> per avanzare
+          <kbd>⌘ + Invio</kbd> per avanzare
         </span>
       </div>
       {error && (
@@ -59,7 +59,7 @@ export function LongTextScreen({
           <AlertCircle className="h-3.5 w-3.5" /> {error}
         </p>
       )}
-      <button onClick={onNext} className="btn-primary">
+      <button onClick={onNext} className="btn-premium">
         {screen.required ? "OK" : value ? "OK" : "Salta"}
         <ArrowRight className="h-4 w-4" />
       </button>

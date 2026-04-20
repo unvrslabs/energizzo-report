@@ -22,9 +22,7 @@ export function MultiChoiceScreen({
     if (active) {
       onChange(value.filter((x) => x !== opt));
     } else {
-      if (screen.maxSelections && value.length >= screen.maxSelections) {
-        return;
-      }
+      if (screen.maxSelections && value.length >= screen.maxSelections) return;
       onChange([...value, opt]);
     }
   }
@@ -41,23 +39,26 @@ export function MultiChoiceScreen({
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, screen.options]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       {screen.section && <SectionLabel index={screen.section.index} label={screen.section.label} />}
-      <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight">
+      <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight tracking-tight">
         {screen.title}
-        {screen.required && <span className="text-primary">*</span>}
+        {screen.required && <span className="text-primary ml-1">*</span>}
       </h2>
-      {screen.description && <p className="text-muted max-w-2xl">{screen.description}</p>}
+      {screen.description && (
+        <p className="text-muted-foreground max-w-2xl text-base leading-relaxed">{screen.description}</p>
+      )}
       {screen.maxSelections && (
-        <p className="text-xs font-mono text-muted">
+        <p className="text-xs font-mono text-muted-foreground">
           {value.length}/{screen.maxSelections} selezionate
         </p>
       )}
 
-      <div className="flex flex-col gap-2 pt-2">
+      <div className="flex flex-col gap-2.5 pt-2">
         {screen.options.map((opt, i) => {
           const active = value.includes(opt);
           const disabled =
@@ -88,7 +89,7 @@ export function MultiChoiceScreen({
         </p>
       )}
 
-      <button onClick={onNext} className="btn-primary">
+      <button onClick={onNext} className="btn-premium">
         OK
         <ArrowRight className="h-4 w-4" />
       </button>

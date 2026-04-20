@@ -30,15 +30,17 @@ export function SingleChoiceScreen({
   }, [screen.options, onChange]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       {screen.section && <SectionLabel index={screen.section.index} label={screen.section.label} />}
-      <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight">
+      <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight tracking-tight">
         {screen.title}
-        {screen.required && <span className="text-primary">*</span>}
+        {screen.required && <span className="text-primary ml-1">*</span>}
       </h2>
-      {screen.description && <p className="text-muted max-w-2xl">{screen.description}</p>}
+      {screen.description && (
+        <p className="text-muted-foreground max-w-2xl text-base leading-relaxed">{screen.description}</p>
+      )}
 
-      <div className="flex flex-col gap-2 pt-2">
+      <div className="flex flex-col gap-2.5 pt-2">
         {screen.options.map((opt, i) => {
           const active = value === opt;
           return (
@@ -46,7 +48,7 @@ export function SingleChoiceScreen({
               key={opt}
               type="button"
               onClick={() => onChange(opt)}
-              className={cn("choice-row group", active && "active")}
+              className={cn("choice-row", active && "active")}
             >
               <span className="choice-key">{keyFor(i)}</span>
               <span className="flex-1">{opt}</span>

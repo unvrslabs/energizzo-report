@@ -49,7 +49,7 @@ export function SurveyPage({ token }: { token: string }) {
   if (state.phase === "loading") {
     return (
       <div className="fixed inset-0 flex items-center justify-center">
-        <Loader2 className="h-6 w-6 animate-spin text-primary" />
+        <Loader2 className="h-7 w-7 animate-spin text-primary" />
       </div>
     );
   }
@@ -57,14 +57,14 @@ export function SurveyPage({ token }: { token: string }) {
   if (state.phase === "invalid") {
     return (
       <div className="fixed inset-0 flex items-center justify-center px-6">
-        <div className="max-w-md text-center space-y-4">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-red-500/20 border border-red-500/40">
-            <AlertTriangle className="h-6 w-6 text-red-400" />
+        <div className="max-w-md text-center space-y-5 animate-fade-in-up">
+          <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-red-500/15 border border-red-500/40 shadow-[0_0_30px_rgba(239,68,68,0.3)]">
+            <AlertTriangle className="h-7 w-7 text-red-400" />
           </div>
-          <h2 className="font-display text-2xl font-bold">Link non valido</h2>
-          <p className="text-muted">
+          <h2 className="font-display text-3xl font-bold tracking-tight">Link non valido</h2>
+          <p className="text-muted-foreground leading-relaxed">
             Questo link non risulta più attivo. Se pensi sia un errore, scrivi a{" "}
-            <a href="mailto:report@energizzo.it" className="text-primary hover:underline">
+            <a href="mailto:report@energizzo.it" className="text-primary hover:underline font-medium">
               report@energizzo.it
             </a>
             .

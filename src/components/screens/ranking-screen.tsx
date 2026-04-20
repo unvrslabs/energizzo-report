@@ -28,30 +28,33 @@ export function RankingScreen({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       {screen.section && <SectionLabel index={screen.section.index} label={screen.section.label} />}
-      <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight">
+      <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight tracking-tight">
         {screen.title}
-        {screen.required && <span className="text-primary">*</span>}
+        {screen.required && <span className="text-primary ml-1">*</span>}
       </h2>
-      {screen.description && <p className="text-muted max-w-2xl">{screen.description}</p>}
+      {screen.description && (
+        <p className="text-muted-foreground max-w-2xl text-base leading-relaxed">{screen.description}</p>
+      )}
 
-      <ol className="flex flex-col gap-2 pt-2">
+      <ol className="flex flex-col gap-2.5 pt-2">
         {items.map((opt, i) => (
           <li
             key={opt}
-            className="flex items-center gap-3 rounded-md border border-border bg-card/40 px-4 py-3"
+            className="flex items-center gap-3 rounded-[0.875rem] border border-border bg-card/40 backdrop-blur px-4 py-3.5 transition-all hover:border-primary/40"
           >
-            <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded bg-primary/20 text-primary font-mono text-sm font-bold">
+            <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/15 border border-primary/30 text-primary font-mono text-sm font-bold">
               {i + 1}
             </span>
-            <span className="flex-1">{opt}</span>
+            <span className="flex-1 text-sm sm:text-base">{opt}</span>
             <div className="flex flex-col gap-1">
               <button
                 type="button"
                 onClick={() => move(i, -1)}
                 disabled={i === 0}
-                className="p-1 rounded border border-border/60 text-muted hover:text-primary hover:border-primary disabled:opacity-30 disabled:hover:text-muted disabled:hover:border-border/60"
+                className="p-1 rounded-md border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors disabled:opacity-25 disabled:hover:text-muted-foreground disabled:hover:border-border"
+                aria-label="Sposta su"
               >
                 <ArrowUp className="h-3.5 w-3.5" />
               </button>
@@ -59,7 +62,8 @@ export function RankingScreen({
                 type="button"
                 onClick={() => move(i, 1)}
                 disabled={i === items.length - 1}
-                className="p-1 rounded border border-border/60 text-muted hover:text-primary hover:border-primary disabled:opacity-30 disabled:hover:text-muted disabled:hover:border-border/60"
+                className="p-1 rounded-md border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors disabled:opacity-25 disabled:hover:text-muted-foreground disabled:hover:border-border"
+                aria-label="Sposta giù"
               >
                 <ArrowDown className="h-3.5 w-3.5" />
               </button>
@@ -74,7 +78,7 @@ export function RankingScreen({
         </p>
       )}
 
-      <button onClick={onNext} className="btn-primary">
+      <button onClick={onNext} className="btn-premium">
         OK
         <ArrowRight className="h-4 w-4" />
       </button>

@@ -130,10 +130,10 @@ export function SurveyRunner({
   if (!current) return null;
 
   return (
-    <div className="fixed inset-0 bg-bg text-fg overflow-hidden">
+    <div className="fixed inset-0 bg-background text-foreground overflow-hidden">
       <ProgressBar value={progress} />
 
-      <div className="h-full w-full flex items-center justify-center overflow-y-auto px-6 py-12 sm:py-16">
+      <div className="h-full w-full flex items-center justify-center overflow-y-auto px-6 py-14 sm:py-20">
         <div
           key={current.id}
           className={cn(
@@ -152,14 +152,20 @@ export function SurveyRunner({
       </div>
 
       {current.type !== "welcome" && current.type !== "thanks" && (
-        <div className="fixed bottom-4 right-4 sm:right-6 flex items-center gap-2 text-xs text-muted z-40">
-          {saving && <span className="hidden sm:inline text-[10px] font-mono text-primary/60">salvando…</span>}
+        <div className="fixed bottom-5 right-5 sm:right-8 flex items-center gap-2 text-xs text-muted-foreground z-40">
+          {saving && (
+            <span className="hidden sm:inline text-[10px] font-mono text-primary/70 tracking-wider mr-2">
+              salvando…
+            </span>
+          )}
           <button
             onClick={goBack}
             disabled={index === 0}
             className={cn(
-              "inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-card/60 backdrop-blur transition-colors",
-              index === 0 ? "opacity-30 cursor-not-allowed" : "hover:border-primary hover:text-primary",
+              "inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 backdrop-blur-xl transition-all",
+              index === 0
+                ? "opacity-30 cursor-not-allowed"
+                : "hover:border-primary hover:text-primary hover:shadow-[0_0_16px_hsl(158_64%_42%_/_0.3)]",
             )}
             aria-label="Precedente"
           >
@@ -167,12 +173,12 @@ export function SurveyRunner({
           </button>
           <button
             onClick={goNext}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-card/60 backdrop-blur hover:border-primary hover:text-primary transition-colors"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 backdrop-blur-xl hover:border-primary hover:text-primary hover:shadow-[0_0_16px_hsl(158_64%_42%_/_0.3)] transition-all"
             aria-label="Successivo"
           >
             <ArrowDown className="h-4 w-4" />
           </button>
-          <span className="ml-2 hidden sm:inline tabular-nums font-mono">
+          <span className="ml-2 hidden sm:inline tabular-nums font-mono text-[11px]">
             {progressIndex + 1} / {progressList.length}
           </span>
         </div>

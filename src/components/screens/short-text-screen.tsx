@@ -22,13 +22,15 @@ export function ShortTextScreen({
   }, [screen.id]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       {screen.section && <SectionLabel index={screen.section.index} label={screen.section.label} />}
-      <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight">
+      <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight tracking-tight">
         {screen.title}
-        {screen.required && <span className="text-primary">*</span>}
+        {screen.required && <span className="text-primary ml-1">*</span>}
       </h2>
-      {screen.description && <p className="text-muted">{screen.description}</p>}
+      {screen.description && (
+        <p className="text-muted-foreground text-base">{screen.description}</p>
+      )}
       <input
         ref={inputRef}
         type="text"
@@ -48,13 +50,13 @@ export function ShortTextScreen({
           <AlertCircle className="h-3.5 w-3.5" /> {error}
         </p>
       )}
-      <div className="flex flex-wrap items-center gap-4 pt-2">
-        <button onClick={onNext} className="btn-primary">
+      <div className="flex flex-wrap items-center gap-5 pt-2">
+        <button onClick={onNext} className="btn-premium">
           OK
           <ArrowRight className="h-4 w-4" />
         </button>
-        <span className="text-xs text-muted">
-          premi <kbd className="rounded border border-border bg-card/60 px-1.5 py-0.5 font-mono text-[10px]">Invio</kbd> ↵
+        <span className="text-xs text-muted-foreground">
+          premi <kbd>Invio</kbd> ↵
         </span>
       </div>
     </div>
