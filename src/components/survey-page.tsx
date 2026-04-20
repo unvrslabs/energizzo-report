@@ -77,7 +77,6 @@ export function SurveyPage({ token }: { token: string }) {
   return (
     <SurveyRunner
       token={token}
-      lead={state.lead}
       initialAnswers={state.answers}
       initialStep={state.step}
       alreadyCompleted={state.completed}

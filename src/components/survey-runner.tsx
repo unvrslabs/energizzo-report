@@ -8,11 +8,7 @@ import {
   type AnswerValue,
   type Screen,
 } from "@/lib/survey-config";
-import {
-  saveSurveyProgress,
-  completeSurveyResponse,
-  type LeadForSurvey,
-} from "@/lib/supabase";
+import { saveSurveyProgress, completeSurveyResponse } from "@/lib/supabase";
 import { ProgressBar } from "./progress-bar";
 import { WelcomeScreen } from "./screens/welcome-screen";
 import { StatementScreen } from "./screens/statement-screen";
@@ -25,7 +21,6 @@ import { ThanksScreen } from "./screens/thanks-screen";
 
 type Props = {
   token: string;
-  lead: LeadForSurvey;
   initialAnswers: Answers;
   initialStep: number;
   alreadyCompleted: boolean;
@@ -33,17 +28,11 @@ type Props = {
 
 export function SurveyRunner({
   token,
-  lead,
   initialAnswers,
   initialStep,
   alreadyCompleted,
 }: Props) {
-  const [answers, setAnswers] = useState<Answers>(() => {
-    const base: Answers = { ...initialAnswers };
-    if (!base.Q1) base.Q1 = lead.ragione_sociale;
-    if (!base.Q2) base.Q2 = lead.piva;
-    return base;
-  });
+  const [answers, setAnswers] = useState<Answers>(() => ({ ...initialAnswers }));
 
   const visible = useMemo(() => SURVEY_SCREENS.filter((s) => !s.skipIf?.(answers)), [answers]);
 
