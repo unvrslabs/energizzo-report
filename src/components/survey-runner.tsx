@@ -56,6 +56,8 @@ export function SurveyRunner({
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const pendingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const answersRef = useRef(answers);
+  answersRef.current = answers;
 
   const current = visible[index];
   const progressList = useMemo(() => getProgressScreens(answers), [answers]);
@@ -73,7 +75,9 @@ export function SurveyRunner({
           : (progressIndex + 1) / progressList.length;
 
   const setAnswer = useCallback((id: string, value: AnswerValue) => {
-    setAnswers((prev) => ({ ...prev, [id]: value }));
+    const next = { ...answersRef.current, [id]: value };
+    answersRef.current = next;
+    setAnswers(next);
     setError(null);
   }, []);
 
@@ -91,7 +95,8 @@ export function SurveyRunner({
 
   const goNext = useCallback(async () => {
     if (!current) return;
-    const err = validateScreen(current, answers);
+    const currentAnswers = answersRef.current;
+    const err = validateScreen(current, currentAnswers);
     if (err) {
       setError(err);
       return;
@@ -106,12 +111,12 @@ export function SurveyRunner({
 
     if (nextScreen && nextScreen.type === "thanks") {
       setSaving(true);
-      await completeSurveyResponse(token, answers);
+      await completeSurveyResponse(token, currentAnswers);
       setSaving(false);
     } else {
-      persistProgress(newIndex, answers);
+      persistProgress(newIndex, currentAnswers);
     }
-  }, [current, answers, index, visible, token, persistProgress]);
+  }, [current, index, visible, token, persistProgress]);
 
   const goBack = useCallback(() => {
     if (index <= 0) return;
