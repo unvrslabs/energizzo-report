@@ -130,7 +130,7 @@ export function SurveyRunner({
   if (!current) return null;
 
   return (
-    <div className="fixed inset-0 bg-background text-foreground overflow-hidden">
+    <div className="fixed inset-0 text-foreground overflow-hidden">
       <ProgressBar value={progress} />
 
       <div className="h-full w-full flex items-center justify-center overflow-y-auto px-6 py-14 sm:py-20">
