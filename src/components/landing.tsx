@@ -1,4 +1,5 @@
 import { ArrowRight, BarChart3, Lock, Sparkles } from "lucide-react";
+import { InviteRequestForm } from "./invite-request-form";
 
 export function Landing() {
   return (
@@ -37,17 +38,8 @@ export function Landing() {
             />
           </div>
 
-          <div className="mt-12 liquid-glass-card p-7 max-w-2xl">
-            <p className="text-base text-foreground">
-              Se hai ricevuto un link personalizzato dal team Energizzo, aprilo per iniziare.
-            </p>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Per richiedere un invito scrivi a{" "}
-              <a href="mailto:emanuele@unvrslabs.dev" className="text-primary hover:underline font-medium">
-                emanuele@unvrslabs.dev
-              </a>
-              .
-            </p>
+          <div className="mt-12">
+            <InviteRequestForm />
           </div>
 
           <a
