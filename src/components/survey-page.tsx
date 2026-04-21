@@ -84,7 +84,15 @@ export function SurveyPage({ token }: { token: string }) {
     return (
       <SurveyWelcome
         lead={state.lead}
-        onStart={() => setState({ ...state, phase: "runner" })}
+        onStart={() =>
+          // Skip the runner's built-in welcome screen (index 0) because we
+          // already showed our custom hero.
+          setState({
+            ...state,
+            phase: "runner",
+            step: Math.max(state.step, 1),
+          })
+        }
       />
     );
   }
