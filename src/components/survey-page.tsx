@@ -7,13 +7,14 @@ import {
 } from "@/lib/supabase";
 import type { Answers } from "@/lib/survey-config";
 import { SurveyRunner } from "./survey-runner";
+import { SurveyWelcome } from "./survey-welcome";
 
 export function SurveyPage({ token }: { token: string }) {
   const [state, setState] = useState<
     | { phase: "loading" }
     | { phase: "invalid" }
     | {
-        phase: "ready";
+        phase: "welcome" | "runner";
         lead: LeadForSurvey;
         answers: Answers;
         step: number;
@@ -33,12 +34,17 @@ export function SurveyPage({ token }: { token: string }) {
         setState({ phase: "invalid" });
         return;
       }
+      const answers = (progress?.answers as Answers) ?? {};
+      const step = progress?.current_step ?? 0;
+      const completed = progress?.completed ?? lead.survey_completed ?? false;
+      const hasProgress =
+        completed || step > 0 || Object.keys(answers).length > 0;
       setState({
-        phase: "ready",
+        phase: hasProgress ? "runner" : "welcome",
         lead,
-        answers: (progress?.answers as Answers) ?? {},
-        step: progress?.current_step ?? 0,
-        completed: progress?.completed ?? lead.survey_completed ?? false,
+        answers,
+        step,
+        completed,
       });
     })();
     return () => {
@@ -71,6 +77,15 @@ export function SurveyPage({ token }: { token: string }) {
           </p>
         </div>
       </div>
+    );
+  }
+
+  if (state.phase === "welcome") {
+    return (
+      <SurveyWelcome
+        lead={state.lead}
+        onStart={() => setState({ ...state, phase: "runner" })}
+      />
     );
   }
 
